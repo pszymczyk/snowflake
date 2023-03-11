@@ -5,9 +5,8 @@ package com.pszymczyk.snowflake;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SnowflakeGeneratorTest {
 
@@ -42,7 +41,7 @@ class SnowflakeGeneratorTest {
 
         //expect
         assertEquals(new Snowflake(
-                new byte[]{-128,127,-1,-1,-1,-1,-1,-1},
+                new byte[]{-128, 127, -1, -1, -1, -1, -1, -1},
                 281474976710655L,
                 machineId,
                 (byte) -128
