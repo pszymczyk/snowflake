@@ -12,7 +12,7 @@ public class PerfTest {
 
         long start = System.currentTimeMillis();
         for (int i = 0; i < 10_000_000; i++) {
-            snowflake.randomSnowflake();
+            snowflake.randomSnowflake2();
         }
         long end = System.currentTimeMillis();
         System.out.println(end-start);

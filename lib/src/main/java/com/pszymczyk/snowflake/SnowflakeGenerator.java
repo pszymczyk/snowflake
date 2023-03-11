@@ -24,16 +24,16 @@ public final class SnowflakeGenerator {
     public Snowflake randomSnowflake3() {
         localCounter++;
         byte[] newSnowflake = new byte[8];
-        newSnowflake[0] = localCounter;
-        newSnowflake[1] = machineId;
+        newSnowflake[6] = localCounter;
+        newSnowflake[7] = machineId;
         long currentMilis = currentMilisSupplier.get();
         byte[] bytes = longToBytes(currentMilis);
-        newSnowflake[2] = bytes[2];
-        newSnowflake[3] = bytes[3];
-        newSnowflake[4] = bytes[4];
-        newSnowflake[5] = bytes[5];
-        newSnowflake[6] = bytes[6];
-        newSnowflake[7] = bytes[7];
+        newSnowflake[0] = bytes[2];
+        newSnowflake[1] = bytes[3];
+        newSnowflake[2] = bytes[4];
+        newSnowflake[3] = bytes[5];
+        newSnowflake[4] = bytes[6];
+        newSnowflake[5] = bytes[7];
         return new Snowflake(newSnowflake, currentMilis, machineId, localCounter);
     }
 
@@ -44,16 +44,16 @@ public final class SnowflakeGenerator {
     public byte[] randomSnowflake() {
         localCounter++;
         byte[] newSnowflake = new byte[8];
-        newSnowflake[0] = localCounter;
-        newSnowflake[1] = machineId;
+        newSnowflake[6] = localCounter;
+        newSnowflake[7] = machineId;
         long currentMilis = currentMilisSupplier.get();
         byte[] bytes = longToBytes(currentMilis);
-        newSnowflake[2] = bytes[2];
-        newSnowflake[3] = bytes[3];
-        newSnowflake[4] = bytes[4];
-        newSnowflake[5] = bytes[5];
-        newSnowflake[6] = bytes[6];
-        newSnowflake[7] = bytes[7];
+        newSnowflake[0] = bytes[2];
+        newSnowflake[1] = bytes[3];
+        newSnowflake[2] = bytes[4];
+        newSnowflake[3] = bytes[5];
+        newSnowflake[4] = bytes[6];
+        newSnowflake[5] = bytes[7];
         return newSnowflake;
     }
 }

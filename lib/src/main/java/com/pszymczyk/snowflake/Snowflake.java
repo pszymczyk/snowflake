@@ -10,10 +10,10 @@ public record Snowflake(byte[] rawData, long currentMilis, byte machineId, byte 
         return new Snowflake(
                 rawData,
                 LongConverters.longFromBytes(new byte[]{
-                        0, 0, rawData[2], rawData[3], rawData[4], rawData[5], rawData[6], rawData[7]
+                        0, 0, rawData[0], rawData[1], rawData[2], rawData[3], rawData[4], rawData[5]
                 }),
-                rawData[1],
-                rawData[0]);
+                rawData[7],
+                rawData[6]);
     }
 
     @Override

@@ -1,0 +1,6 @@
+# Snowflake generator
+Simple Java [Snowflake Id](https://en.wikipedia.org/wiki/Snowflake_ID) generator.
+
+## Limitations
+
+Guarantees at most 256 unique values each millisecond, with higher load duplicates are generated.
