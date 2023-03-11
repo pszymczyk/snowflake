@@ -9,6 +9,8 @@ Simple Java [Snowflake Id](https://en.wikipedia.org/wiki/Snowflake_ID) generator
 
 ## Visual representation
 
+`{LocalDateTime}-{p/n}{machineId}-{p/n}{counter}`
+
 - `2023-03-11T21:30:38.986-p127-p128`
 - `2023-03-11T21:30:38.986-n127-n128`
 - `2023-03-11T21:30:38.986-n127-p128`
