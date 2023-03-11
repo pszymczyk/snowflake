@@ -19,7 +19,7 @@ public final class SnowflakeGenerator {
         this.currentMilisSupplier = currentMilisSupplier;
     }
 
-    public Snowflake randomSnowflake2() {
+    public Snowflake randomSnowflake3() {
         localCounter++;
         byte[] newSnowflake = new byte[8];
         newSnowflake[0] = localCounter;
@@ -33,6 +33,10 @@ public final class SnowflakeGenerator {
         newSnowflake[6] = bytes[4];
         newSnowflake[7] = bytes[5];
         return new Snowflake(newSnowflake, currentMilis, machineId, localCounter);
+    }
+
+    public long randomSnowflake2() {
+        return longFromBytes(randomSnowflake());
     }
 
     public byte[] randomSnowflake() {
@@ -63,6 +67,18 @@ public final class SnowflakeGenerator {
                 (byte) ((currentMilis >> 8) & 0xff),
                 (byte) ((currentMilis) & 0xff)
         };
+    }
+
+
+    private long longFromBytes(byte[] randomSnowflake) {
+        return (randomSnowflake[0] & 0xFFL) << 56
+                | (randomSnowflake[1] & 0xFFL) << 48
+                | (randomSnowflake[2] & 0xFFL) << 40
+                | (randomSnowflake[3] & 0xFFL) << 32
+                | (randomSnowflake[4] & 0xFFL) << 24
+                | (randomSnowflake[5] & 0xFFL) << 16
+                | (randomSnowflake[6] & 0xFFL) << 8
+                | (randomSnowflake[7] & 0xFFL);
     }
 
 }

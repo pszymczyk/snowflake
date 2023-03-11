@@ -5,7 +5,9 @@ package com.pszymczyk.snowflake;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class SnowflakeGeneratorTest {
 
@@ -17,8 +19,34 @@ class SnowflakeGeneratorTest {
         SnowflakeGenerator snowflakeGenerator = new SnowflakeGenerator(machineId, () -> 281474976710655L);
 
         //expect
-        assertEquals(new byte[]{-128,127,-1,-1,-1,-1,-1,-1}, snowflakeGenerator.randomSnowflake());
+        assertArrayEquals(new byte[]{-128, 127, -1, -1, -1, -1, -1, -1}, snowflakeGenerator.randomSnowflake());
     }
 
+    @Test
+    void shouldGenerateMaxValidSnowflake2() {
+        //given
+        byte machineId = 127;
+
+        SnowflakeGenerator snowflakeGenerator = new SnowflakeGenerator(machineId, () -> 281474976710655L);
+
+        //expect
+        assertEquals(-9187343239835811841L, snowflakeGenerator.randomSnowflake2());
+    }
+
+    @Test
+    void shouldGenerateMaxValidSnowflake3() {
+        //given
+        byte machineId = 127;
+
+        SnowflakeGenerator snowflakeGenerator = new SnowflakeGenerator(machineId, () -> 281474976710655L);
+
+        //expect
+        assertEquals(new Snowflake(
+                new byte[]{-128,127,-1,-1,-1,-1,-1,-1},
+                281474976710655L,
+                machineId,
+                (byte) -128
+        ), snowflakeGenerator.randomSnowflake3());
+    }
 
 }
