@@ -26,8 +26,12 @@ public record Snowflake(byte[] rawData, long currentMilis, byte machineId, byte 
     public String visualRepresentation(ZoneOffset zoneOffset) {
         return String.format("%s-%s-%s",
                 Instant.ofEpochMilli(currentMilis).atZone(zoneOffset).toLocalDateTime(),
-                machineId,
+                getMachineId(),
                 getLocalCounter());
+    }
+
+    private String getMachineId() {
+        return String.format("%s%s", (machineId<0) ? "n": "p", machineId & 0xff);
     }
 
     private String getLocalCounter() {

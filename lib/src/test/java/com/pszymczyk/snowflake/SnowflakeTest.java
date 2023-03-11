@@ -30,7 +30,7 @@ class SnowflakeTest {
 
         //then
         Assertions.assertEquals(
-                "2023-03-11T21:30:38.986-127-n128",
+                "2023-03-11T21:30:38.986-p127-n128",
                 snowflakeGenerator.randomSnowflake3().visualRepresentationUTC());
     }
 }
