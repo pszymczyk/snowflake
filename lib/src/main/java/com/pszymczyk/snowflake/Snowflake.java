@@ -1,5 +1,8 @@
 package com.pszymczyk.snowflake;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -14,6 +17,21 @@ public record Snowflake(byte[] rawData, long currentMilis, byte machineId, byte 
                 }),
                 rawData[7],
                 rawData[6]);
+    }
+
+    public String visualRepresentationUTC() {
+        return visualRepresentation(ZoneOffset.UTC);
+    }
+
+    public String visualRepresentation(ZoneOffset zoneOffset) {
+        return String.format("%s-%s-%s",
+                Instant.ofEpochMilli(currentMilis).atZone(zoneOffset).toLocalDateTime(),
+                machineId,
+                getLocalCounter());
+    }
+
+    private String getLocalCounter() {
+        return String.format("%s%s", (localCounter<0) ? "n": "p", localCounter & 0xff);
     }
 
     @Override

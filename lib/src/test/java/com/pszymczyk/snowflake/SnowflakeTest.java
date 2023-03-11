@@ -20,4 +20,17 @@ class SnowflakeTest {
                 new Snowflake(rawSnowflake, currentMilis, machineId, (byte) -128),
                 Snowflake.from(rawSnowflake));
     }
+
+    @Test
+    void visualRepresentationTest() {
+        //given
+        long currentMilis = 1678570238986L;
+        byte machineId = 127;
+        SnowflakeGenerator snowflakeGenerator = new SnowflakeGenerator(machineId, () -> currentMilis);
+
+        //then
+        Assertions.assertEquals(
+                "2023-03-11T21:30:38.986-127-n128",
+                snowflakeGenerator.randomSnowflake3().visualRepresentationUTC());
+    }
 }
