@@ -7,13 +7,11 @@ public record Snowflake(byte[] rawData, long currentMilis, byte machineId, byte 
 
     static Snowflake from(byte[] rawData) {
 
-        byte[] randomSnowflake = {
-                0, 0, rawData[2], rawData[3], rawData[4], rawData[5], rawData[6], rawData[7]
-        };
-        long currentMilis1 = LongConverters.longFromBytes(randomSnowflake);
         return new Snowflake(
                 rawData,
-                currentMilis1,
+                LongConverters.longFromBytes(new byte[]{
+                        0, 0, rawData[2], rawData[3], rawData[4], rawData[5], rawData[6], rawData[7]
+                }),
                 rawData[1],
                 rawData[0]);
     }
